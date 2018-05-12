@@ -338,6 +338,12 @@ function initialize_primary() {
             pgbackrest --stanza=db stanza-create
         fi
 
+        CRONTAB_CONF='/pgconf/crontab.conf'
+        if [[ -f ${CRONTAB_CONF?} ]]; then
+            echo_info "Creating crontab..."
+            crontab /pgconf/crontab.conf
+        fi
+
         echo_info "Loading setup.sql.." >> /tmp/start-db.log
         cp /opt/cpm/bin/setup.sql /tmp
         if [ -f /pgconf/setup.sql ]; then

@@ -29,6 +29,7 @@ RUN yum -y update && yum -y install epel-release \
     kubernetes-client \
     procps-ng  \
     rsync \
+    cronie \
  && yum -y install postgresql96-server postgresql96-contrib postgresql96 \
     pgaudit_96 \
     pgbackrest \
