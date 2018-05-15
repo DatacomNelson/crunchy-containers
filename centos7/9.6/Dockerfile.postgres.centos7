@@ -33,6 +33,7 @@ RUN yum -y update && yum -y install epel-release \
  && yum -y install postgresql96-server postgresql96-contrib postgresql96 \
     pgaudit_96 \
     pgbackrest \
+    sudo \
  && yum -y clean all
 
 ENV PGROOT="/usr/pgsql-${PGVERSION}"
@@ -52,6 +53,10 @@ RUN chown -R postgres:postgres /opt/cpm /var/lib/pgsql \
 
 # Link pgbackrest.conf to default location for convenience
 RUN ln -sf /pgconf/pgbackrest.conf /etc/pgbackrest.conf
+
+# Add in sudo group, add postgres user to it and add user to sudoers file
+RUN groupadd sudo
+RUN echo 'postgres ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # add volumes to allow override of pg_hba.conf and postgresql.conf
 # add volumes to allow backup of postgres files

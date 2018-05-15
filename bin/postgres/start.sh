@@ -426,6 +426,9 @@ source /opt/cpm/bin/custom-configs.sh
 echo_info "Starting PostgreSQL.."
 postgres -D $PGDATA &
 
+# Start cron daemon
+sudo crond
+
 date
 
 if [[ -v PGAUDIT_ANALYZE ]]; then
