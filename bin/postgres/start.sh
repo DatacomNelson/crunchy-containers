@@ -211,6 +211,7 @@ function fill_conf_file() {
     env_check_info "SHARED_BUFFERS" "Setting SHARED_BUFFERS to ${SHARED_BUFFERS:-128MB}."
     env_check_info "WORK_MEM" "Setting WORK_MEM to ${WORK_MEM:-4MB}."
     env_check_info "MAX_WAL_SENDERS" "Setting MAX_WAL_SENDERS to ${MAX_WAL_SENDERS:-6}."
+    env_check_info "MAX_WAL_KEEP_SEGMENTS" "Setting MAX_WAL_KEEP_SEGMENTS to ${MAX_WAL_KEEP_SEGMENTS:-400}."
 
     cp /opt/cpm/conf/postgresql.conf.template /tmp/postgresql.conf
 
@@ -233,6 +234,7 @@ function fill_conf_file() {
     sed -i "s/SHARED_BUFFERS/${SHARED_BUFFERS:-128MB}/g" /tmp/postgresql.conf
     sed -i "s/WORK_MEM/${WORK_MEM:-4MB}/g" /tmp/postgresql.conf
     sed -i "s/MAX_WAL_SENDERS/${MAX_WAL_SENDERS:-6}/g" /tmp/postgresql.conf
+    sed -i "s/MAX_WAL_KEEP_SEGMENTS/${MAX_WAL_KEEP_SEGMENTS:-400}/g" /tmp/postgresql.conf
     sed -i "s/ARCHIVE_MODE/${ARCHIVE_MODE:-off}/g" /tmp/postgresql.conf
     sed -i "s/ARCHIVE_TIMEOUT/${ARCHIVE_TIMEOUT:-0}/g" /tmp/postgresql.conf
 }
