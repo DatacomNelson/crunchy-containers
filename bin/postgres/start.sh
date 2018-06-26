@@ -374,9 +374,9 @@ function initialize_primary() {
         if [[ -v SYNC_REPLICA ]]; then
             echo "Synchronous_standby_names = '"$SYNC_REPLICA"'" >> $PGDATA/postgresql.conf
         fi
-        else
-            echo_info "PGDATA already contains a database."
-        fi
+    else
+        echo_info "PGDATA already contains a database."
+    fi
 }
 
 
@@ -446,6 +446,12 @@ fi
 
 # We will wait indefinitely until "docker stop [container_id]"
 # When that happens, we route to the "trap_sigterm" function above
-wait
+
+if [[ ${DEBUG_LOG} == "true" ]]; then
+  output_log_to_std_out.sh
+else
+  wait
+fi
+
 
 echo_info "PostgreSQL is shutting down. Exiting.."

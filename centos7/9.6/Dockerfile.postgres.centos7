@@ -34,6 +34,7 @@ RUN yum -y update && yum -y install epel-release \
     pgaudit_96 \
     pgbackrest \
     sudo \
+    inotify-tools \
  && yum -y clean all
 
 ENV PGROOT="/usr/pgsql-${PGVERSION}"
